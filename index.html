@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Γραφεία Παντελέος - Γραφεία ειδή Preise στην Κόρινθο. Επαγγελματική υποστήριξη και υπηρεσίες γραφείου.">
+    <title>Γραφεία Παντελέος | Κόρινθος</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="fonts/fonts.css">
+
+    <!-- Schema.org JSON-LD for LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Γραφεία Παντελέος",
+      "image": "https://picsum.photos/seed/panteleos/800/600",
+      "telephone": "2741024866",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Κόρινθος",
+        "addressCountry": "GR"
+      },
+      "priceRange": "€€",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "17:00"
+      }
+    }
+    </script>
+
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #0d2137;
+            --accent: #6d28d9;
+            --bg: #0f0f1a;
+            --text: #ffffff;
+            --text-muted: #a1a1aa;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --font-heading: 'Inter', sans-serif;
+            --font-body: 'Source Sans 3', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 120px 0;
+        }
+
+        .text-center { text-align: center; }
+        .text-accent { color: var(--accent); }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 4px;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, #4c1d95 100%);
+            color: white;
+            box-shadow: 0 10px 30px -10px rgba(109, 40, 217, 0.5);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px -10px rgba(109, 40, 217, 0.7);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border-color: var(--glass-border);
+            color: white;
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            background: rgba(109, 40, 217, 0.1);
+        }
+
+        /* --- NAVIGATION --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+            background: rgba(15, 15, 26, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hamburger {
+            width: 30px;
+            height: 20px;
+            position: relative;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: white;
+            border-radius: 2px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+
+        .hamburger span:nth-child(1) { top: 0px; }
+        .hamburger span:nth-child(2) { top: 9px; }
+        .hamburger span:nth-child(3) { top: 18px; }
+
+        .hamburger.active span:nth-child(1) {
+            top: 9px;
+            transform: rotate(135deg);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            left: -60px;
+        }
+        .hamburger.active span:nth-child(3) {
+            top: 9px;
+            transform: rotate(-135deg);
+        }
+
+        .nav-links {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            height: 100vh;
+            background: var(--primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+        }
+
+        .nav-links.active {
+            right: 0;
+        }
+
+        .nav-links li {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .nav-links a {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #0f0f1a 70%);
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        /* Decorative background elements */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: var(--accent);
+            filter: blur(150px);
+            opacity: 0.15;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: var(--secondary);
+            filter: blur(120px);
+            opacity: 0.2;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-weight: 600;
+            display: block;
+        }
+
+        .hero h1 {
+            margin-bottom: 30px;
+            background: linear-gradient(to right, #fff, #a1a1aa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about {
+            background-color: var(--bg);
+            position: relative;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            filter: grayscale(100%);
+            transition: var(--transition);
+            box-shadow: 20px 20px 0 var(--glass-border);
+        }
+
+        .about-image:hover img {
+            filter: grayscale(0%);
+            transform: translate(-5px, -5px);
+            box-shadow: 25px 25px 0 var(--accent);
+        }
+
+        .about-text h2 {
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+        }
+
+        /* --- SERVICES SECTION --- */
+        .services {
+            background: linear-gradient(to bottom, var(--bg), #13131f);
+        }
+
+        .section-header {
+            margin-bottom: 80px;
+            max-width: 600px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 40px 30px;
+            border-radius: 12px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 25px;
+            color: var(--accent);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        /* --- GALLERY SECTION --- */
+        .gallery {
+            background-color: var(--bg);
+        }
+
+        .gallery-grid {
+            column-count: 3;
+            column-gap: 20px;
+        }
+
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 20px;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 46, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-overlay span {
+            color: white;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item:hover .gallery-overlay span {
+            transform: translateY(0);
+        }
+
+        /* --- CONTACT SECTION --- */
+        .contact {
+            background: linear-gradient(to top, var(--bg), #0a0a12);
+            position: relative;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+
+        .contact-info {
+            background: var(--primary);
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .info-item {
+            margin-bottom: 40px;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .info-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .info-value a {
+            transition: color 0.3s;
+        }
+
+        .info-value a:hover {
+            color: var(--accent);
+        }
+
+        .map-container {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            background: #000;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #050508;
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .footer-tagline {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #555;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* --- ANIMATIONS --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .about-grid, .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                order: -1;
+                margin-bottom: 40px;
+            }
+
+            .contact-info {
+                padding: 40px;
+            }
+
+            .gallery-grid {
+                column-count: 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+
+            .gallery-grid {
+                column-count: 1;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#about" onclick="closeMenu()">Ποιοι Είμαστε</a></li>
+                <li><a href="#services" onclick="closeMenu()">Υπηρεσίες</a></li>
+                <li><a href="#gallery" onclick="closeMenu()">Gallery</a></li>
+                <li><a href="#contact" onclick="closeMenu()">Επικοινωνία</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero" id="home">
+        <div class="container hero-content reveal">
+            <span class="hero-subtitle">Γραφεία Παντελέος</span>
+            <h1>Επαγγελματική Υποστήριξη<br>στην Κόρινθο</h1>
+            <p style="margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Γραφεία ειδή Preise · στην Κόρινθος. Προσφέρουμε εξειδικευμένες υπηρεσίες γραφείου με επαγγελματισμό και ποιότητα.
+            </p>
+            <div class="hero-buttons">
+                <a href="tel:2741024866" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    Τηλεφώνησε Τώρα
+                </a>
+                <a href="#contact" class="btn btn-outline">Βρείτε μας</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ABOUT SECTION -->
+    <section class="section-padding about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image reveal">
+                    <!-- Placeholder: Replace with actual office photo -->
+                    <img src="https://picsum.photos/seed/panteleos-office/600/700" alt="Γραφεία Παντελέος - Εσωτερικό">
+                </div>
+                <div class="about-text reveal stagger-1">
+                    <h2>Ποιοι Είμαστε</h2>
+                    <p style="margin-bottom: 20px;">
+                        Η <strong>Γραφεία Παντελέος</strong> λειτουργεί με πάθος και επαγγελματισμό στην καρδιά της Κορινθίας. Είμαστε μια ομάδα που πιστεύει ότι η επιτυχία κάθε επιχείρησης βασίζεται στην αξιόπιστη υποστήριξη και τη σωστή διαχείριση των υποθέσεων.
+                    </p>
+                    <p>
+                        Στόχος μας είναι να παρέχουμε εξατομικευμένες λύσεις, διασφαλίζοντας ότι κάθε πελάτης λαμβάνει την προσοχή που του αξίζει. Μεγαλώνουμε μαζί σας, προσφέροντας υπηρεσίες υψηλών προδιαγραφών σε ένα περιβάλλον που συνδυάζει την παραδοσιακή αξιοπιστία με τη σύγχρονη τεχνολογία.
+                    </p>
+                    <div style="margin-top: 30px;">
+                        <a href="#contact" class="btn btn-outline">Μιλήστε μας</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="section-padding services" id="services">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Οι Υπηρεσίες μας</h2>
+                <p>Προσαρμοσμένες λύσεις για τις ανάγκες του επαγγελματικού σας κόσμου.</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card reveal stagger-1">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                    <h3>Διαχείριση Επικοινωνίας</h3>
+                    <p>Συλλογή και διανομή μηνυμάτων, διαχείριση email και τηλεφωνική υποστήριξη με επαγγελματισμό.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card reveal stagger-2">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                    <h3>Γραμματεία & Αρχεία</h3>
+                    <p>Οργάνωση και φύλαξη εγγράφων, δημιουργία αναφορών και διαχείριση αρχείων πελατών.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card reveal stagger-3">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                    <h3>Στρατηγική Marketing</h3>
+                    <p>Βελτιστοποίηση της παρουσίας σας online και ανάπτυξη αποτελεσματικών στρατηγικών επικοινωνίας.</p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-card reveal stagger-1">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    <h3>Διαχείριση Περιουσιακών</h3>
+                    <p>Οικονομικός έλεγχος, παρακολούθηση δαπανών και συντακτική υποστήριξη για τις υποθέσεις σας.</p>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="service-card reveal stagger-2">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    <h3>Συμβουλευτική Επιχειρήσεων</h3>
+                    <p>Ανάλυση προβλημάτων και προτάσεις βελτίωσης για την ανάπτυξη του επιχειρηματικού σας περιβάλλοντος.</p>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="service-card reveal stagger-3">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    <h3>Ομαδική Εργασία</h3>
+                    <p>Διαχείριση ομάδων και συνεργασιών για την ολοκλήρωση έργων με επιτυχία και εντός χρονοδιαγράμματος.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section class="section-padding gallery" id="gallery">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Η Φωτογραφία μας</h2>
+                <p>Μια ματιά στο περιβάλλον και τις υπηρεσίες μας.</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <!-- Placeholders: Replace with actual photos -->
+                <div class="gallery-item reveal stagger-1">
+                    <img src="https://picsum.photos/seed/g1/400/500" alt="Γραφείο Παντελέος">
+                    <div class="gallery-overlay"><span>Εσωτερικό</span></div>
+                </div>
+                <div class="gallery-item reveal stagger-2">
+                    <img src="https://picsum.photos/seed/g2/400/300" alt="Συνεδρίαση">
+                    <div class="gallery-overlay"><span>Συνεργασία</span></div>
+                </div>
+                <div class="gallery-item reveal stagger-3">
+                    <img src="https://picsum.photos/seed/g3/400/600" alt="Υπηρεσίες">
+                    <div class="gallery-overlay"><span>Προσόντα</span></div>
+                </div>
+                <div class="gallery-item reveal stagger-1">
+                    <img src="https://picsum.photos/seed/g4/400/400" alt="Επιχειρηματικό">
+                    <div class="gallery-overlay"><span>Επιχειρηματικό</span></div>
+                </div>
+                <div class="gallery-item reveal stagger-2">
+                    <img src="https://picsum.photos/seed/g5/400/550" alt="Προσωπικό">
+                    <div class="gallery-overlay"><span>Προσωπικό</span></div>
+                </div>
+                <div class="gallery-item reveal stagger-3">
+                    <img src="https://picsum.photos/seed/g6/400/350" alt="Αρχείο">
+                    <div class="gallery-overlay"><span>Αρχείο</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="section-padding contact" id="contact">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Επικοινωνία</h2>
+                <p>Είμαστε εδώ για να σας βοηθήσουμε. Επικοινωνήστε μαζί μας σήμερα.</p>
+            </div>
+
+            <div class="contact-wrapper reveal">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <span class="info-label">Τηλέφωνο</span>
+                        <a href="tel:2741024866" class="info-value">2741024866</a>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Περιοχή</span>
+                        <span class="info-value">Κόρινθος</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Ώρες Λειτουργίας</span>
+                        <span class="info-value">Επικοινωνήστε μαζί μας</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Email</span>
+                        <span class="info-value">info@panteleos.gr</span>
+                    </div>
+                    
+                    <div style="margin-top: 40px;">
+                        <a href="tel:2741024866" class="btn btn-primary">Καλέστε Τώρα</a>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps?q=%CE%93%CF%81%CE%B1%CF%86%CE%B5%CE%AF%CE%B1%20%CE%A0%CE%B1%CE%BD%CF%84%CE%B5%CE%BB%CE%AD%CE%BF%CF%82%2C%20%2C%20%CE%9A%CF%8C%CF%81%CE%B9%CE%BD%CE%B8%CE%BF%CF%82&output=embed" width="100%" height="100%" style="border:0" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Γραφεία Παντελέος</div>
+                <div class="footer-tagline">Επαγγελματισμός στην Κόρινθο</div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Γραφεία Παντελέος. Με επιφύλαξη παντός δικαιώματος.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Mobile Menu Logic
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        const links = document.querySelectorAll('.nav-links li');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        function closeMenu() {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        }
+
+        // Scroll Animation Logic (Intersection Observer)
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Stop observing once revealed
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(15, 15, 26, 0.95)';
+                navbar.style.padding = '15px 0';
+            } else {
+                navbar.style.background = 'rgba(15, 15, 26, 0.7)';
+                navbar.style.padding = '20px 0';
+            }
+        });
+    </script>
+</body>
+</html>
